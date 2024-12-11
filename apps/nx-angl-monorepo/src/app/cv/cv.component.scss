@@ -1,0 +1,104 @@
+@use 'sass:color';
+
+:host {
+  --grad-col-01: rgb(255, 82, 82);
+  --grad-col-02: rgb(76, 0, 255);
+
+  .bg-gradient {
+    background: radial-gradient(100% 100% at 50% -20%, var(--grad-col-01) 0%, var(--grad-col-02) 100%);
+  }
+
+  section {
+    @apply flex flex-col items-start justify-center m-8 p-16 bg-white;
+    box-shadow: 0 0 135px 0px rgba(150, 150, 150, 0.15);
+    transition: box-shadow 0.35s ease-in-out;
+    &:hover {
+      box-shadow: 0 0 135px 0px rgba(150, 150, 150, 0.5);
+    }
+  }
+
+  h2 {
+    @apply text-4xl font-bold  mt-8;
+    color: color.scale(rgb(58, 48, 81), $lightness: 20%);
+  }
+
+  h3 {
+    @apply text-xl font-thin text-slate-800  mb-6;
+  }
+
+  h4 {
+    @apply text-sm font-normal text-gray-400 uppercase mb-2;
+  }
+  p {
+    @apply text-base leading-7 mb-8;
+  }
+
+  ul.vertical-list {
+    @apply list-disc list-outside text-base px-4 mb-8;
+    li {
+      @apply leading-6 mb-4;
+    }
+  }
+
+  ul.horizontal-list {
+    @apply flex flex-wrap gap-2 leading-7;
+    li {
+      @apply bg-gray-100 text-gray-500 px-4 py-1 rounded-sm font-medium;
+    }
+  }
+
+  p,
+  ul,
+  li {
+    b {
+      @apply font-medium;
+    }
+  }
+
+  a {
+    @apply text-blue-500 hover:underline;
+  }
+
+  .lin-grad {
+    background: linear-gradient(45deg, var(--grad-col-01), var(--grad-col-02));
+    background-clip: text;
+    background-size: 400px;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .scroll-animated {
+    animation: letter-spacing-animation linear forwards;
+    animation-timeline: scroll();
+  }
+
+  @keyframes letter-spacing-animation {
+    from {
+      letter-spacing: initial;
+    }
+    to {
+      letter-spacing: 8rem;
+    }
+  }
+
+  @keyframes grow-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  #progress {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(45deg, var(--grad-col-01), var(--grad-col-02));
+
+    transform-origin: 0 50%;
+    animation: grow-progress auto linear;
+    animation-timeline: --page-scroll;
+  }
+}
